@@ -54,27 +54,14 @@ end
 local function screen(params)
     local bg = tonumber(params.bg) or 0x000000
     local fg = tonumber(params.fg) or 0xFFFFFF
-    local sw = tonumber(params.w) or "undefined"
-    local sh = tonumber(params.h) or "undefined"
-    local psw, psh = gpu.getResolution()
+    local sw = tonumber(params.w) or w
+    local sh = tonumber(params.h) or h
 
     gpu.setBackground(bg)
     gpu.setForeground(fg)
     background = bg
     foreground = fg
-
-    if sw == "undefined" then
-        gpu.setResolution(psw,psh)
-    else
-        gpu.setResolution(sw,psh)
-        psw = sw
-    end
-
-    if sh == "undefined" then
-        gpu.setResolution(psw,psh)
-    else
-        gpu.setResolution(psw,sh)
-    end
+    gpu.setResolution(sw,sh)
 end
 
 local functionMap = {
